@@ -33,7 +33,7 @@ end
 
 puts "Creating lists..."
 action_list = List.create!(name: "Action Classics", image_url: "https://source.unsplash.com/500x300/?action,movie")
-drama_list = List.create!(name: "Tearjerkers", image_url: "https://source.unsplash.com/500x300/?drama,movie")
+drama_list = List.create!(name: "Drama", image_url: "https://source.unsplash.com/500x300/?drama,movie")
 
 puts "Creating bookmarks..."
 movies = Movie.all
@@ -54,4 +54,3 @@ Review.create!(list: drama_list, content: "Cried a lot. Beautiful storytelling."
 Review.create!(list: drama_list, content: "Perfect for a rainy Sunday.")
 
 puts "✅ Done seeding!"
-

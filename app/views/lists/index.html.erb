@@ -1,16 +1,27 @@
-<h1 class="mb-4">My Lists</h1>
+<div class="hero-fullscreen text-white d-flex align-items-center justify-content-center">
+  <div class="text-center">
+    <h1 class="display-1 fw-bold">Welcome to WatchList</h1>
+  </div>
+</div>
 
+<h2 class="mb-5 text-center display-5">My Movie list</h2>
 <div class="row">
   <% @lists.each do |list| %>
     <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
+      <div class="card h-100 shadow-sm border-0 text-center">
+        <% image = list.image_url.present? ? list.image_url : asset_path("list-default.png") %>
+        <%= image_tag image, class: "card-img-top", alt: list.name, style: "height: 200px; object-fit: cover;" %>
         <div class="card-body">
-          <h5 class="card-title"><%= list.name %></h5>
-          <%= link_to "View", list_path(list), class: "btn btn-primary btn-sm" %>
+          <h5 class="card-title fw-semibold"><%= list.name %></h5>
+        </div>
+        <div class="card-footer bg-white border-0">
+          <%= link_to "🔍 View list", list_path(list), class: "btn btn-outline-primary btn-sm" %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
-<%= link_to "Create new list", new_list_path, class: "btn btn-success mt-4" %>
+<div class="text-center mt-5">
+  <%= link_to "➕ Create new list", new_list_path, class: "btn btn-success btn-lg" %>
+</div>

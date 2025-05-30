@@ -1,48 +1,60 @@
-<h1 class="mb-4"><%= @list.name %></h1>
+<h1 class="mb-4 text-center display-4 fw-bold"><%= @list.name %></h1>
 
-<h2>Bookmarks</h2>
+<h2 class="mb-3">🎬 Bookmarked Movies</h2>
 <div class="row">
   <% @list.bookmarks.each do |bookmark| %>
     <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-sm h-100 border-0">
         <%= image_tag bookmark.movie.poster_url, class: "card-img-top", alt: bookmark.movie.title %>
         <div class="card-body">
-          <h5 class="card-title"><%= bookmark.movie.title %></h5>
-          <p class="card-text"><%= bookmark.comment %></p>
-          <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger btn-sm" %>
+          <h5 class="card-title fw-semibold"><%= bookmark.movie.title %></h5>
+          <p class="card-text text-muted"><%= bookmark.comment %></p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-end">
+          <%= link_to "🗑️ Delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
-<h3 class="mt-5">Add a new bookmark</h3>
-<%= form_with(model: [@list, @bookmark], local: true) do |form| %>
-  <div class="mb-3">
-    <%= form.label :movie_id, "Movie" %>
-    <%= form.collection_select :movie_id, Movie.all, :id, :title, {}, class: "form-select" %>
-  </div>
-  <div class="mb-3">
-    <%= form.label :comment %>
-    <%= form.text_field :comment, class: "form-control" %>
+<hr class="my-5">
+
+<h3 class="mb-3">➕ Add a new bookmark</h3>
+<%= form_with(model: [@list, @bookmark], local: true, class: "mb-5") do |form| %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= form.label :movie_id, "Movie", class: "form-label" %>
+      <%= form.collection_select :movie_id, Movie.all, :id, :title, {}, class: "form-select" %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= form.label :comment, class: "form-label" %>
+      <%= form.text_field :comment, class: "form-control" %>
+    </div>
   </div>
   <%= form.submit "Add Bookmark", class: "btn btn-primary" %>
 <% end %>
 
-<h3 class="mt-5">Reviews</h3>
-<% @list.reviews.each do |review| %>
-  <div class="mb-2">
-    <p><%= review.content %></p>
-  </div>
+<h3 class="mt-5">🗣️ Reviews</h3>
+<% if @list.reviews.any? %>
+  <ul class="list-group mb-4">
+    <% @list.reviews.each do |review| %>
+      <li class="list-group-item"><%= review.content %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="text-muted">No reviews yet. Be the first to write one!</p>
 <% end %>
 
-<h4 class="mt-4">Add a review</h4>
+<h4 class="mt-4 mb-3">✍️ Add a review</h4>
 <%= form_with(model: [@list, @review], local: true) do |form| %>
   <div class="mb-3">
-    <%= form.label :content %>
-    <%= form.text_area :content, class: "form-control" %>
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-control", rows: 3 %>
   </div>
   <%= form.submit "Submit Review", class: "btn btn-secondary" %>
 <% end %>
 
-<%= link_to "Back to all lists", lists_path, class: "btn btn-secondary mt-4" %>
+<div class="mt-5 text-center">
+  <%= link_to "⬅️ Back to all lists", lists_path, class: "btn btn-outline-dark" %>
+</div>

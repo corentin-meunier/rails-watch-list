@@ -22,3 +22,16 @@ body {
   height: 400px;
   object-fit: cover;
 }
+body {
+  scroll-behavior: smooth;
+}
+.hero-fullscreen {
+  background-image: url('cinema-background.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  width: 100%;
+  position: relative;
+  padding: 2rem;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7);
+}
