@@ -1,0 +1,15 @@
+<h1>Create a List</h1>
+<%= form_with model: @list, local: true do |form| %>
+  <% if @list.errors.any? %>
+    <ul>
+      <% @list.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.submit %>
+<% end %>

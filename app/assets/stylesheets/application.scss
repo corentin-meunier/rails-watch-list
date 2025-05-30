@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+body {
+  background-color: #f8f9fa;
+}
+.card-img-top {
+  height: 400px;
+  object-fit: cover;
+}

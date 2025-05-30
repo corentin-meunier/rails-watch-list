@@ -62,3 +62,6 @@ end
 
 gem 'rspec-rails', group: [ :test ]
 gem 'rails-controller-testing', group: [ :test ]
+gem "sassc"
+gem "bootstrap", "~> 5.2.3"
+gem "font-awesome-sass", "~> 6.1"

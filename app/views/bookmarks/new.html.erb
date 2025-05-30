@@ -1,0 +1,25 @@
+<h1>Add a movie to <%= @list.name %></h1>
+
+<%= form_with(model: [@list, @bookmark], local: true) do |form| %>
+  <% if @bookmark.errors.any? %>
+    <ul>
+      <% @bookmark.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.label :movie_id, "Movie" %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :title %>
+  </div>
+
+  <div>
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+
+  <%= form.submit "Add bookmark" %>
+<% end %>
+
+<%= link_to "Back to list", list_path(@list) %>
